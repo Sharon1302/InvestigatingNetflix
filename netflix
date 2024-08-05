@@ -1,0 +1,19 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as py
+from scipy.stats import mode
+# Read in the Netflix CSV as a DataFrame
+netflix_df = pd.read_csv("netflix_data.csv")
+# Start coding here! Use as many cells as you like
+movies_1990s = netflix_df[(netflix_df['release_year'] >= 1990) & (netflix_df['release_year'] < 2000)]
+duration_series = movies_1990s['duration']
+mode_duration = duration_series.mode()[0] 
+duration = mode_duration
+print(duration)
+action_movies_1990s = netflix_df[(netflix_df['genre'] == 'Action') & 
+                                (netflix_df['release_year'] >= 1990) & (netflix_df['release_year'] < 2000)]
+
+# Count short action movies (less than 90 minutes)
+short_movie_count = action_movies_1990s[action_movies_1990s['duration'] < 90].shape[0]
+
+print(short_movie_count)
